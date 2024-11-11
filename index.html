@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apology Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Summertime&family=Ubuntu:wght@500&family=Pacifico&family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Hi my wife pp, Every moment with you has been a reminder of how lucky I am. I want to spend the rest of my life showing you how much you mean to me, making you smile, and supporting you in every way I can. Please forgive me for hurting you. Will you allow me to keep loving you for the rest of our days?</h1>
+    
+    <!-- Kitten image (Second image, shown initially) -->
+    <img id="kitten" class="kitten" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Kitten">
+
+    <div class="buttons">
+        <button class="button yes" onclick="accept()">Yes</button>
+        <button class="button no" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>
+    </div>
+
+    <div id="message" class="message">Hi my wife pp, Every moment with you has been a reminder of how lucky I am. I want to spend the rest of my life showing you how much you mean to me, making you smile, and supporting you in every way I can. Please forgive me for hurting you. Will you allow me to keep loving you for the rest of our days?</div>
+    <div id="confirmation-message" class="confirmation-message">YAAAY!! I’m so happy! Thank you for accepting me, I love you so much!</div>
+
+    <!-- Falling ⭐ emojis -->
+    <div class="falling-stars" id="falling-stars"></div>
+
+    <script>
+        function accept() {
+            const kitten = document.getElementById("kitten");
+            const message = document.getElementById("message");
+            const confirmationMessage = document.getElementById("confirmation-message");
+
+            // Replace the second kitten image with the first one
+            kitten.src = "https://media0.giphy.com/media/T86i6yDyOYz7J6dPhf/giphy.gif";
+
+            // Add jumping animation to kitten (you can adjust this)
+            kitten.classList.add("jump");
+
+            // Show the message after jump animation
+            setTimeout(() => {
+                message.style.display = "none"; // Hide the original message
+                confirmationMessage.style.display = "block"; // Show the confirmation message
+            }, 500);
+
+            // Trigger party popper effect
+            createConfetti();
+        }
+
+        function moveNoButton() {
+            const noButton = document.querySelector(".no");
+            const randomX = Math.floor(Math.random() * 200) - 100;
+            const randomY = Math.floor(Math.random() * 200) - 100;
+            noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        // Function to create party popper confetti effect
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement("div");
+                confetti.classList.add("confetti");
+
+                // Randomize position and speed
+                const leftPosition = Math.random() * 100;
+                const animationDuration = 2 + Math.random() * 2;
+                const animationDelay = Math.random() * 2;
+
+                confetti.style.left = `${leftPosition}%`;
+                confetti.style.animationDuration = `${animationDuration}s`;
+                confetti.style.animationDelay = `${animationDelay}s`;
+
+                document.body.appendChild(confetti);
+            }
+        }
+    </script>
+</body>
+</html>
