@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apology Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Summertime&family=Ubuntu:wght@500&family=Pacifico&family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <style>
+        /* Background style with pear green */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #D1E74B; /* Pear green */
+            text-align: center;
+            font-family: 'Summertime', cursive; /* Summer font */
+            color: white; /* White font color */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Kitten image (Character) */
+        .kitten {
+            width: 200px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        /* Button styling */
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 1em;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 20px;
+            transition: 0.3s;
+            background-color: yellow; /* Yellow button color */
+            color: black; /* Black text color for contrast */
+            font-family: 'Roboto', sans-serif; /* Default font for buttons */
+            position: relative;
+            z-index: 2; /* Ensure buttons stay above confetti */
+        }
+
+        /* Adding stroke effect to all text except for the button words */
+        h1, .message, .confirmation-message {
+            text-shadow: 2px 2px 5px black; /* Black stroke */
+        }
+
+        /* Message after jumping */
+        .message {
+            font-size: 1em; /* Smaller font size for message */
+            color: white;
+            display: none;
+            margin-top: 20px;
+        }
+
+        /* Confirmation message */
+        .confirmation-message {
+            font-size: 1.5em; /* Larger font size for confirmation message */
+            color: yellow; /* Yellow color */
+            font-family: 'Pacifico', cursive; /* Jolly and happy font */
+            display: none;
+            margin-top: 20px;
+        }
+
+        /* Confetti animation */
+        .confetti {
+            position: absolute;
+            top: -50px;
+            width: 10px;
+            height: 10px;
+            background-color: #ff4747;
+            animation: confetti-fall 4s ease-in forwards; /* Confetti lasts for 4 seconds */
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        /* Media Queries for responsiveness */
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 1.5em; /* Larger font on wider screens */
+            }
+            .kitten {
+                width: 250px; /* Larger kitten image */
+            }
+        }
+
+        @media (max-width: 767px) {
+            h1 {
+                font-size: 1em; /* Smaller font size on small screens */
+                margin: 15px;
+            }
+
+            .kitten {
+                width: 180px; /* Smaller kitten image */
+            }
+
+            .message {
+                font-size: 0.9em; /* Even smaller message font */
+            }
+
+            .confirmation-message {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Hi my wife pp, Every moment with you has been a reminder of how lucky I am. I want to spend the rest of my life showing you how much you mean to me, making you smile, and supporting you in every way I can. Please forgive me for hurting you. Will you allow me to keep loving you for the rest of our days?</h1>
+    
+    <!-- Kitten image (Second image, shown initially) -->
+    <img id="kitten" class="kitten" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Kitten">
+
+    <div class="buttons">
+        <button class="button yes" onclick="accept()">Yes</button>
+        <button class="button no" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>
+    </div>
+
+    <div id="message" class="message">Hi my wife pp, Every moment with you has been a reminder of how lucky I am. I want to spend the rest of my life showing you how much you mean to me, making you smile, and supporting you in every way I can. Please forgive me for hurting you. Will you allow me to keep loving you for the rest of our days?</div>
+    <div id="confirmation-message" class="confirmation-message">YAAAY!! I’m so happy! Thank you for accepting me, I love you so much!</div>
+
+    <script>
+        function accept() {
+            const kitten = document.getElementById("kitten");
+            const message = document.getElementById("message");
+            const confirmationMessage = document.getElementById("confirmation-message");
+
+            // Replace the second kitten image with the first one
+            kitten.src = "https://media0.giphy.com/media/T86i6yDyOYz7J6dPhf/giphy.gif";
+
+            // Add jumping animation to kitten (you can adjust this)
+            kitten.classList.add("jump");
+
+            // Show the message after jump animation
+            setTimeout(() => {
+                message.style.display = "none"; // Hide the original message
+                confirmationMessage.style.display = "block"; // Show the confirmation message
+            }, 500);
+
+            // Trigger party popper effect
+            createConfetti();
+        }
+
+        function moveNoButton() {
+            const noButton = document.querySelector(".no");
+            const randomX = Math.floor(Math.random() * 200) - 100;
+            const randomY = Math.floor(Math.random() * 200) - 100;
+            noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        // Function to create party popper confetti effect
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement("div");
+                confetti.classList.add("confetti");
+
+                // Randomize position and speed
+                const leftPosition = Math.random() * 100;
+                const animationDuration = 4;  // Confetti lasts for 4 seconds
+                const animationDelay = Math.random() * 2;
+
+                confetti.style.left = `${leftPosition}%`;
+                confetti.style.animationDuration = `${animationDuration}s`;
+                confetti.style.animationDelay = `${animationDelay}s`;
+
+                document.body.appendChild(confetti);
+            }
+        }
+    </script>
+</body>
+</html>
