@@ -1,0 +1,140 @@
+/* Background style with pear green */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #D1E74B; /* Pear green */
+    text-align: center;
+    font-family: 'Summertime', cursive; /* Summer font */
+    color: white; /* White font color */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Kitten image (Character) */
+.kitten {
+    width: 200px; /* Adjust size as needed */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Button styling */
+.buttons {
+    margin-top: 20px;
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    transition: 0.3s;
+    background-color: yellow; /* Yellow button color */
+    color: black; /* Black text color for contrast */
+    font-family: 'Roboto', sans-serif; /* Default font for buttons */
+}
+
+/* Adding stroke effect to all text except for the button words */
+h1, .message, .confirmation-message {
+    text-shadow: 2px 2px 5px black; /* Black stroke */
+}
+
+/* Message after jumping */
+.message {
+    font-size: 1em; /* Smaller font size for message */
+    color: white;
+    display: none;
+    margin-top: 20px;
+}
+
+/* Confirmation message */
+.confirmation-message {
+    font-size: 1.5em; /* Larger font size for confirmation message */
+    color: yellow; /* Yellow color */
+    font-family: 'Pacifico', cursive; /* Jolly and happy font */
+    display: none;
+    margin-top: 20px;
+}
+
+/* Glittering effect on falling emojis */
+.falling-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1; /* Ensure it stays behind other content */
+}
+
+.falling-stars span {
+    position: absolute;
+    font-size: 2em;
+    color: white;
+    animation: fall 3s infinite;
+    opacity: 0;
+}
+
+/* Keyframes for falling animation */
+@keyframes fall {
+    0% {
+        top: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+    }
+}
+
+/* Confetti animation */
+.confetti {
+    position: absolute;
+    top: -50px;
+    width: 10px;
+    height: 10px;
+    background-color: #ff4747;
+    animation: confetti-fall 4s ease-in forwards;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+    }
+}
+
+/* Media Queries for responsiveness */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 1.5em; /* Larger font on wider screens */
+    }
+    .kitten {
+        width: 250px; /* Larger kitten image */
+    }
+}
+
+@media (max-width: 767px) {
+    h1 {
+        font-size: 1em; /* Smaller font size on small screens */
+        margin: 15px;
+    }
+
+    .kitten {
+        width: 180px; /* Smaller kitten image */
+    }
+
+    .message {
+        font-size: 0.9em; /* Even smaller message font */
+    }
+
+    .confirmation-message {
+        font-size: 1em;
+    }
+}
